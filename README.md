@@ -2,5 +2,5 @@
 <h1>E-commerce Platform Workshop</h1>
 <ul>
 <li>Docker çalışırken sail up -d ile proje ayağa kaldırılır.</li>
-<li>Database php artisan migrate ile oluşturulabilir.</li>
+<li>Database sail artisan migrate ile oluşturulabilir.</li>
 </ul>
