@@ -13,7 +13,7 @@ class UserModel extends Authenticatable
 {
     use SoftDeletes;
 
-    protected $table="user";
+    protected $table="users";
 
     protected $fillable = [
         'name',

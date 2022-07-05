@@ -25,9 +25,13 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <h1>Ürün adı</h1>
-                    <p class="price">129 ₺</p>
-                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    <h1>{{$product->product_name}}</h1>
+                    <p class="price">{{$product->price}}</p>
+                    <form action="{{route(basket_add)}}" method="post">
+{{csrf_field()}}
+                        <input type="hidden" name="id" value="{{$product->id}}">
+                        <input type="submit" class="btn btn-theme" value="Sepete Ekle">
+                    </form>
                 </div>
             </div>
 
@@ -37,7 +41,9 @@
                     <li role="presentation"><a href="#t2" data-toggle="tab">Yorumlar</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="t1">t1</div>
+                    <div role="tabpanel" class="tab-pane active" id="t1">
+                        {{$product->description}}
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="t2">t2</div>
                 </div>
             </div>

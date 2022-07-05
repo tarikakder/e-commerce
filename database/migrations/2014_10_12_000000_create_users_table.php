@@ -12,16 +12,17 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {if(!Schema::hasTable('users')) {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',60);
-            $table->string('surname',60);
-            $table->string('username',60);
-            $table->string('password',60);
+            $table->increments('id');
+            $table->string('name', 60);
+            $table->string('surname', 60);
+            $table->string('username', 60);
+            $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();
         });
+    };
     }
 
     /**

@@ -13,15 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('transactionProd');
-            $table->string('userID');
-            $table->string('productID');
-            $table->string('address');
-            $table->dateTime('orderDate');
-            $table->integer('quantity_Order');
-        });
+        if(!Schema::hasTable('orders')) {
+            Schema::create('orders', function (Blueprint $table) {
+                $table->id();
+                $table->string('transactionProd');
+                $table->integer('basket_id')->unsigned();
+                $table->string('userID');
+                $table->string('productID');
+                $table->string('address');
+                $table->dateTime('orderDate');
+                $table->decimal('order_amount', 5, 4);
+                $table->unique('basket_id');
+                $table->foreign('basket_id')->references('id')->on('basket')->onDelete('cascade');
+            });
+        };
     }
 
     /**

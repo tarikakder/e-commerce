@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {

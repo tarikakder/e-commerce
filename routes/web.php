@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('mainpage');
 //});
 
-Route::get('/',[\App\Http\Controllers\mainpageController::class,'index']);
+Route::get('/',[\App\Http\Controllers\mainpageController::class,'index'])->name('mainpage');
 Route::get('/kategori/{slug_categoryName}',[\App\Http\Controllers\categoryController::class,'index'])->name('category');
 Route::get('/urun/{slug_productName}',[\App\Http\Controllers\productController::class,'index'])->name('product');
 Route::get('/sepet',[\App\Http\Controllers\basketController::class,'index'])->name('basket');
@@ -27,6 +27,10 @@ Route::get('/siparisler/{id}',[\App\Http\Controllers\ordersController::class,'de
 
 Route::post('posts/{token}', [HomeController::class, 'store']);
 
+Route::group(['prefix'=>'sepet'],function (){
+    Route::get('/',[\App\Http\Controllers\basketController::class,'index'])->name('basket');
+    Route::post('/ekle',[\App\Http\Controllers\basketController::class,'add'])->name('basket_add');
+});
 
 Route::group(['prefix'=>'kullanici'], function(){
     Route::get('/oturumac',[\App\Http\Controllers\userController::class,'login_form'])->name('user.login');
