@@ -25,9 +25,12 @@ Route::get('/odeme',[\App\Http\Controllers\paymentController::class,'index'])->n
 Route::get('/siparisler',[\App\Http\Controllers\ordersController::class,'index'])->name('orders');
 Route::get('/siparisler/{id}',[\App\Http\Controllers\ordersController::class,'detail'])->name('order');
 
+Route::post('posts/{token}', [HomeController::class, 'store']);
+
 
 Route::group(['prefix'=>'kullanici'], function(){
-    Route::get('/oturumac',[\App\Http\Controllers\userController::class,'login_form'])->name('user_login');
-    Route::get('/kaydol',[\App\Http\Controllers\userController::class,'register_form'])->name('user_register');
+    Route::get('/oturumac',[\App\Http\Controllers\userController::class,'login_form'])->name('user.login');
+    Route::get('/kaydol',[\App\Http\Controllers\userController::class,'register_form'])->name('user.register');
+    Route::post('/kaydol',[\App\Http\Controllers\userController::class,'register']);
 });
 
