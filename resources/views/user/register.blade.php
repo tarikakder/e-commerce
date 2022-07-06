@@ -7,33 +7,40 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
+                        @include('layouts.partials.errors')
                         <form class="form-horizontal" role="form" method="POST" action="{{route('user.register')}}">
 {{csrf_field()}}
-                            <div class="form-group has-error">
-                                <label for="name" class="col-md-4 control-label">Kullanıcı Adı</label>
+                            <div class="form-group {{$errors->has('username')?'has-error':''}}">
+                                <label for="username" class="col-md-4 control-label">Kullanıcı Adı</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="username" value="" required autofocus>
+                                    @if($errors->has('username'))
                                     <span class="help-block">
                                         <strong>Kullanıcı adı boş bırakılamaz</strong>
                                     </span>
+                                        @endif
                                 </div>
                             </div>
-                            <div class="form-group has-error">
+                            <div class="form-group {{$errors->has('name')?'has-error':''}}">
                                 <label for="name" class="col-md-4 control-label">İsim</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                                    @if($errors->has('name'))
                                     <span class="help-block">
                                         <strong>İsim boş bırakılamaz</strong>
                                     </span>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="form-group has-error">
-                                <label for="name" class="col-md-4 control-label">Soyisim</label>
+                            <div class="form-group {{$errors->has('surname')?'has-error':''}}">
+                                <label for="surname" class="col-md-4 control-label">Soyisim</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="surname" value="" required autofocus>
+                                    <input id="surname" type="text" class="form-control" name="surname" value="" required autofocus>
+                                    @if($errors->has('surname'))
                                     <span class="help-block">
                                         <strong>Soyisim boş bırakılamaz</strong>
                                     </span>
+                                    @endif
                                 </div>
                             </div>
 

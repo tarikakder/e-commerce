@@ -13,10 +13,35 @@ class userController extends Controller
     public function login_form(){
         return view('user.login');
     }
+    public function login(){
+        $this->validate(\request(),[
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+
+        if(auth()->attempt(['username'=>\request('username'),'password'=>\request('password')],\request()->has('benihatirla')))
+        {
+            \request()->session()->regenerate();
+            return redirect()->intended('/');
+        }
+        else{
+            $errors=['username'=>'Hatalı Giriş'];
+            return back()->withErrors($errors);
+        }
+    }
+
     public function register_form(){
         return view('user.register');
     }
     public function register(){
+
+        $this->validate(request(),[
+            'username'=>'required|min:3|max:60',
+            'name'=>'required|min:3|max:60',
+            'surname'=>'required|min:3|max:60',
+            'password'=>'required|confirmed|min:5|max:15'
+        ]);
+
         $user = UserModel::create([
             'name'=>request('name'),
         'surname'=>request('surname'),

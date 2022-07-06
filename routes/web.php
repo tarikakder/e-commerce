@@ -34,6 +34,7 @@ Route::group(['prefix'=>'sepet'],function (){
 
 Route::group(['prefix'=>'kullanici'], function(){
     Route::get('/oturumac',[\App\Http\Controllers\userController::class,'login_form'])->name('user.login');
+    Route::post('/oturumac',[\App\Http\Controllers\userController::class,'login']);
     Route::get('/kaydol',[\App\Http\Controllers\userController::class,'register_form'])->name('user.register');
     Route::post('/kaydol',[\App\Http\Controllers\userController::class,'register']);
 });

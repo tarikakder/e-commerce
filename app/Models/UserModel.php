@@ -28,4 +28,8 @@ class UserModel extends Authenticatable
         'remember_token',
     ];
 
+    const CREATED_AT = 'created_date';
+    const UPDATED_AT = 'updated_date';
+    const DELETED_AT= 'deleted_date';
+
 }

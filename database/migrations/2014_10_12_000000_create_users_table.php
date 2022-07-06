@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('username', 60);
             $table->string('password', 60);
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_date')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('deleted_date')->nullable();
         });
     };
     }
